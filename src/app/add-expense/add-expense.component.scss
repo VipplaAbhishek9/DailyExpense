@@ -1,0 +1,14 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .example-container > * {
+    width: 100%;
+  }
+
+  .page-header
+  {
+    background-color: rgb(215, 242, 250);
+  }
+  

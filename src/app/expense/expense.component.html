@@ -1,0 +1,20 @@
+
+
+<table class="table">
+    <thead >
+        <tr class="table-primary"> 
+            <th>Item</th>
+            <th>Category</th>
+            <th>Cost(Rs)</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let d of data">
+    <tr>
+        <td>{{d.CategoryDescription}}</td>
+        <td>{{d.CategoryName}}</td>
+        <td>{{d.Amount}}</td>
+        <td>{{d.EDate | date}}</td>
+</tr>
+</tbody>
+</table>

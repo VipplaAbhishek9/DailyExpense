@@ -1,0 +1,13 @@
+<div class="chart-container" style="position: center; height:40vh; width:80vw">
+    <canvas id='chart' baseChart
+    [data]="pieChartData" 
+    [labels]="pieChartLabels" 
+    [chartType]="'pie'"
+    [options]="pieChartOptions"
+    [plugins]="pieChartPlugins"
+    [colors]="pieChartColor"
+    [legend]="pieChartLegend"
+    (chartClick)="onChartClick($event)">
+    </canvas>
+</div>
+

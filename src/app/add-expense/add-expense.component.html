@@ -1,0 +1,63 @@
+<div class="page-header">
+  <h3 class="display-5 text-center">Add Expense</h3>
+  <hr>
+</div>
+<form #form="ngForm" (submit)="onAdd(form)" autocomplete="off"> 
+  <div class="container">
+    <input type="hidden" name="EID" #EID="ngModel" [(ngModel)]="expenseData.EID">
+  <div class="row">
+    <div class="col-md-6 mt-3 ">
+      <input name="CategoryDescription" #CategoryDescription="ngModel" [(ngModel)]="expenseData.CategoryDescription" placeholder="Product" class="form-control" required minlength="4"/>
+      <div class="alert alert-danger" [hidden]="CategoryDescription.valid || CategoryDescription.untouched">Enter a Name</div>
+    </div>
+    <div class="col-md-6 mt-3">
+       <select name="CatId" placeholder="Product Category" class="form-control" #CatId="ngModel" [(ngModel)]="expenseData.CatId" required>
+         <option value="0">-Select a Category-</option>
+         <option *ngFor="let cat of catData " value="{{cat.CatId}}">{{cat.CategoryName}}</option>
+       </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 mt-3">
+        <div class="input-group mb-3">
+<div class="input-group-prepend">
+  <span class="input-group-text">₹</span>
+</div>
+<input type="text" name="Amount" #Amount="ngModel" [(ngModel)]="expenseData.Amount" placeholder="Cost"  class="form-control" required>
+</div>
+    </div>
+
+     <div class="col-md-6 mt-3">
+      <input type="text" name="EDate" #EDate="ngModel" [(ngModel)]="expenseData.EDate" placeholder="Pick a Date" bsDatepicker class="form-control" required/>
+    </div>
+  </div>
+
+    <button class="btn btn-info mt-3 mr-3" type="submit" [disabled]="form.invalid">Add to table</button>
+    <button class="btn btn-info mt-3" type="reset">Clear</button>
+   </div>
+</form>
+  <hr>
+
+<table class="table">
+  <thead  class="thead">
+    <tr class="table-primary">
+      <th scope="col">#</th>
+      <th scope="col">Product</th>
+      <th scope="col">Category</th>
+      <th scope="col">Cost(?)</th>
+      <th scope="col">Date</th>
+      <th><button class="btn btn-success" type="submit" [disabled]="!arrData.length" (click)="onSave()">Save</button></th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let arr of arrData;let i=index">
+    <tr >
+       <td>#</td>
+      <td>{{arr.CategoryDescription}}</td>
+        <td>{{arr.CategoryName}}</td>
+          <td>{{arr.Amount}}</td>
+            <td>{{arr.EDate | date}}</td>
+            <td><a><i class="fa fa-pencil-square-o" (click)="onEdit(i,arr)" aria-hidden="true" style="color:blue;"></i></a>&nbsp;
+            <a><i class="fa fa-trash-o" (click)="onDelete(i,arr)" aria-hidden="true" style="color:red;"></i></a></td>
+    </tr>
+  </tbody>
+  </table>
